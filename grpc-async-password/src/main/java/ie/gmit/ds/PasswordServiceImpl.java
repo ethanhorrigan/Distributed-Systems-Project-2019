@@ -15,32 +15,54 @@ public class PasswordServiceImpl extends PasswordServiceGrpc.PasswordServiceImpl
 	public PasswordServiceImpl() {
 		accountList = new ArrayList<>();
 		createDummyAccounts();
-		generateRandomPassword();
-	}
-	
-	@Override
-	public void hash(PasswordHashRequest request, StreamObserver<PasswordHashResponse> responseObserver) {
-		try {
-			accountList.add(request);
-			logger.info("Added new account:" + request);
-			responseObserver.onNext(PasswordHashResponse.newBuilder().setValue(true).build());
-		} catch (RuntimeException ex) {
-			
-		}
 	}
 
 	@Override
-	public void validate(PasswordValidateRequest request, StreamObserver<PasswordValidateResponse> responseObserver) {
+	public void hash(PasswordHashRequest request, StreamObserver<BoolValue> responseObserver) {
+		try {
+			accountList.add(request);
+			logger.info("Added New Password " + request);
+			responseObserver.onNext(BoolValue.newBuilder().setValue(true).build());
+		} catch (RuntimeException ex) {
+			responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
+		}
+		responseObserver.onCompleted();
+	}
+
+	@Override
+	public void validate(PasswordValidateRequest request, StreamObserver<PasswordHashResponse> responseObserver) {
 		// TODO Auto-generated method stub
 		super.validate(request, responseObserver);
 	}
 
 	private void createDummyAccounts() {
-		accountList.add(PasswordHashRequest.newBuilder().setUserId("1").setPassword("testPassword").build());
-		accountList.add(PasswordHashRequest.newBuilder().setUserId("2").setPassword("testPassword2").build());
+		accountList.add(PasswordHashRequest.newBuilder().setUserId(1).setPassword(Passwords.generateRandomPassword(Constants.PASSWORD_LENGTH)).build());
+		accountList.add(PasswordHashRequest.newBuilder().setUserId(2).setPassword(Passwords.generateRandomPassword(Constants.PASSWORD_LENGTH)).build());
 	}
-	
-	private void generateRandomPassword() {
-		Passwords.generateRandomPassword(5);
+
+
+	public static void main(String[] args) {
+		char[] password;
+		byte[] hashedPassword;
+		byte[] salt;
+		
+		StringBuilder passwordSb = new StringBuilder(Constants.PASSWORD_LENGTH);
+		StringBuilder hashedPasswordSb = new StringBuilder(Constants.PASSWORD_LENGTH);
+		StringBuilder saltSb = new StringBuilder(Constants.PASSWORD_LENGTH);
+
+		password = Passwords.generateRandomPassword(5).toCharArray();
+		salt = Passwords.getNextSalt();
+		hashedPassword = Passwords.hash(password, salt);
+
+		for (int j = 0; j < password.length; j++) {
+			passwordSb.append(password[j]);
+			hashedPasswordSb.append(hashedPassword[j]);
+			saltSb.append("["+salt[j]+"]");
+		}
+		 System.out.println("password:" + passwordSb.toString());
+		 System.out.println("salt:" + saltSb.toString());
+		 System.out.println("hashedPassword:" + hashedPasswordSb.toString());
+		// System.out.println("salt used: " + salt);
+		// System.out.println("Hashed Password: "+ hashedPassword.toString());
 	}
 }

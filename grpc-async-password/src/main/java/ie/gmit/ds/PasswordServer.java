@@ -35,8 +35,8 @@ public class PasswordServer {
 	}
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		final PasswordServer inventoryServer = new PasswordServer();
-		inventoryServer.start();
-		inventoryServer.blockUntilShutdown();
+		final PasswordServer passwordServer = new PasswordServer();
+		passwordServer.start();
+		passwordServer.blockUntilShutdown();
 	}
 }
