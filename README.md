@@ -18,7 +18,7 @@ git clone https://github.com/ethanhorrigan/Distributed-Systems-Project-2019.git
 
 * **Ethan Horrigan** - [Ethan Horrigan](https://github.com/ethanhorrigan)
 
-## Reousrces
+## Resources & Acknowledgments
 
 * [Salted Password Hasing](https://crackstation.net/hashing-security.htm) - Password Hashing
 * [John French](https://github.com/john-french)
