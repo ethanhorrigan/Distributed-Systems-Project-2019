@@ -56,13 +56,13 @@ public class PasswordServiceImpl extends PasswordServiceGrpc.PasswordServiceImpl
 
 		for (int j = 0; j < password.length; j++) {
 			passwordSb.append(password[j]);
-			hashedPasswordSb.append(hashedPassword[j]);
+			hashedPasswordSb.append("["+hashedPassword[j]+"]");
 			saltSb.append("["+salt[j]+"]");
 		}
 		 System.out.println("password:" + passwordSb.toString());
 		 System.out.println("salt:" + saltSb.toString());
 		 System.out.println("hashedPassword:" + hashedPasswordSb.toString());
-		// System.out.println("salt used: " + salt);
-		// System.out.println("Hashed Password: "+ hashedPassword.toString());
+		 
+		 System.out.println(Passwords.isExpectedPassword(password, salt, hashedPassword));
 	}
 }
