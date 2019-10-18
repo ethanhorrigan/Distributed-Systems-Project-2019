@@ -14,6 +14,16 @@ git clone https://github.com/ethanhorrigan/Distributed-Systems-Project-2019.git
 * [gRPC](https://grpc.io/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
 
+### Checklist
+
+- [x] Hashed Passwords with Salt
+- [ ] User Input (ID & Password)
+- [ ] Store Password
+- [ ] Store Hashed Password
+- [ ] Generate User ID?
+- [x] Create Client
+- [x] Create Server
+
 ## Authors
 
 * **Ethan Horrigan** - [Ethan Horrigan](https://github.com/ethanhorrigan)
