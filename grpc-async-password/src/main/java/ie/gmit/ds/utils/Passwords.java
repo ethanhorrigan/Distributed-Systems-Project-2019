@@ -1,7 +1,8 @@
-package ie.gmit.ds;
+package ie.gmit.ds.utils;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -104,5 +105,17 @@ public class Passwords {
      */
     public static boolean isNumeric(char c) {
     	return (c >= '0' && c <= '9');
+    }
+    
+    /**
+     * Returns true if password contains atleast 2 digits, false otherwise.
+     * @param password from password string
+     * @return true if password contains atleast 2 digits.
+     */
+    public static boolean isValid(char[] password) {
+    	
+    	if(password.length < Constants.PASSWORD_LENGTH) return false;
+   	
+    	return true;
     }
 }

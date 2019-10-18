@@ -1,4 +1,4 @@
-package ie.gmit.ds;
+package ie.gmit.ds.utils;
 
 public class Constants {
 	/**
