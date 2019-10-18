@@ -29,7 +29,6 @@ public class Passwords {
 
     /**
      * Returns a random salt to be used to hash a password.
-     *
      * @return a 16 bytes random salt
      */
     public static byte[] getNextSalt() {
@@ -40,7 +39,6 @@ public class Passwords {
 
     /**
      * Returns a salted and hashed password using the provided hash.<br>
-     *
      * @param password the password to be hashed
      * @param salt     a 16 bytes salt, ideally obtained with the getNextSalt method
      * @return the hashed password with a pinch of salt
@@ -59,7 +57,6 @@ public class Passwords {
 
     /**
      * Returns true if the given password and salt match the hashed value, false otherwise.<br>
-     *
      * @param password     the password to check
      * @param salt         the salt used to hash the password
      * @param expectedHash the expected hashed value of the password
@@ -72,7 +69,6 @@ public class Passwords {
 
     /**
      * Generates a random password of a given length, using letters and digits.
-     *
      * @param length the length of the password
      * @return a random password
      */
@@ -89,5 +85,24 @@ public class Passwords {
             }
         }
         return sb.toString();
+    }
+    
+    /**
+     * Check if a character from password character array is a letter.
+     * @param c character from a password character array.
+     * @return true if char is a letter.
+     */
+    public static boolean isLetter(char c) {
+    	c = Character.toUpperCase(c);
+		return  (c >= 'A' && c <= 'Z');
+    }
+    
+    /**
+     * Check if a character from password character array is numeric.
+     * @param c char from password string
+     * @return true if numeric.
+     */
+    public static boolean isNumeric(char c) {
+    	return (c >= '0' && c <= '9');
     }
 }
