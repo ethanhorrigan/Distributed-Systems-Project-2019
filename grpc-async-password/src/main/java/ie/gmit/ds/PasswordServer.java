@@ -14,7 +14,7 @@ public class PasswordServer {
 
 	private void start() throws IOException {
 		grpcServer = ServerBuilder.forPort(PORT).addService(new PasswordServiceImpl()).build().start();
-		logger.info("Server Initialised, listening on: " + PORT);
+		logger.info("Server Initialised: " + PORT);
 
 	}
 
