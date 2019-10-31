@@ -9,20 +9,20 @@ Clone
 git clone https://github.com/ethanhorrigan/Distributed-Systems-Project-2019.git
 ```
 
+Change directory
+```
+cd Distributed-Systems-Project-2019
+```
+
+Run Jar
+```
+java -jar PasswordService-SERVER.jar
+```
+
 ## Built With
 
 * [gRPC](https://grpc.io/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
-
-### Checklist
-
-- [x] Hashed Passwords with Salt
-- [ ] User Input (ID & Password)
-- [ ] Store Password
-- [ ] Store Hashed Password
-- [ ] Generate User ID?
-- [x] Create Client
-- [x] Create Server
 
 ## Authors
 
