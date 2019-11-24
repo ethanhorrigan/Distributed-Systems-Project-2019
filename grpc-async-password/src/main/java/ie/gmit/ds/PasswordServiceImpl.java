@@ -18,35 +18,22 @@ public class PasswordServiceImpl extends PasswordServiceGrpc.PasswordServiceImpl
 
 	@Override
 	public void hash(PasswordHashRequest request, StreamObserver<PasswordHashResponse> responseObserver) {
-		try {
+		logger.info("HASH METHOD IN");
+
 			char[] password = request.getPassword().toCharArray();
 			byte[] salt = Passwords.getNextSalt();
 			byte[] hashedPassword = Passwords.hash(password, salt);
 			
-			/**
-			 * Initially was using StringBuilders, but converting it to a ByteString and using a loop just resulted in messy code.
-			 * opted for ByteString instead: https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/ByteString
-			 */
-			/*
-			StringBuilder passwordSb = new StringBuilder(Constants.PASSWORD_LENGTH);
-			StringBuilder hashedPasswordSb = new StringBuilder(Constants.PASSWORD_LENGTH);
-			StringBuilder saltSb = new StringBuilder(Constants.PASSWORD_LENGTH);
-			*/
-
 			ByteString hashedPasswordBs = ByteString.copyFrom(hashedPassword);
 			ByteString saltBs = ByteString.copyFrom(salt);
 					
-			responseObserver.onNext(PasswordHashResponse.newBuilder()
+			PasswordHashResponse response = PasswordHashResponse.newBuilder()
 					.setUserId(request.getUserId())
 					.setHashedPassword(hashedPasswordBs)
 					.setSalt(saltBs)
-					.build());
+					.build();
 			
-			logger.info("Added New Password " + request);
-			
-		} catch (RuntimeException ex) {
-			responseObserver.onNext(PasswordHashResponse.newBuilder().getDefaultInstanceForType());
-		}
+		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
 

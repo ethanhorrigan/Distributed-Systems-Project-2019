@@ -1,6 +1,10 @@
 package ie.gmit.ds;
 
+import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import ie.gmit.ds.utils.Passwords;
 
 /*
  * Author: Ethan Horrigan
@@ -15,10 +19,14 @@ public class Account {
 	private String hashedPassword;
 	private String salt;
 	
+	byte[] saltByte = Passwords.getNextSalt();
+	
 	public Account() {}
 	
+	/*
+	 * Output Account details
+	 */
 	public Account(int userId, String userName, String email, String hashedPassword, String salt) {
-		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.email = email;
@@ -26,8 +34,10 @@ public class Account {
 		this.salt = salt;
 	}
 	
+	/*
+	 * Input Account Details
+	 */
 	public Account(int userId, String userName, String email, String password) {
-		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.email = email;
@@ -58,6 +68,15 @@ public class Account {
 	public String getPassword() {
 		return password;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [userId=" + userId + ", userName=" + userName + ", email=" + email + ", password=" + password
+				+ ", hashedPassword=" + hashedPassword + ", salt=" + salt + ", saltByte=" + Arrays.toString(saltByte)
+				+ "]";
+	}
+	
+	
 	
 	
 }

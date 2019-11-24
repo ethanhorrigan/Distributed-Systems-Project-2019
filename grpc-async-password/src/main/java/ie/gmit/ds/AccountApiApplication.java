@@ -11,6 +11,11 @@ public class AccountApiApplication extends Application<AccountApiConfig> {
 
 	@Override
 	public void run(AccountApiConfig configuration, Environment environment) throws Exception {
+		
+		
+		final ExampleHealthCheck healthCheck = new ExampleHealthCheck();
+		environment.healthChecks().register("example", healthCheck);
+		
         final AccountApiResource resource = new AccountApiResource();
 
         environment.jersey().register(resource);
