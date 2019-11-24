@@ -23,6 +23,7 @@ java -jar PasswordService-SERVER.jar
 
 * [gRPC](https://grpc.io/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
+* [DropWizard](https://www.dropwizard.io/en/stable/)
 
 ## Authors
 
@@ -32,3 +33,4 @@ java -jar PasswordService-SERVER.jar
 
 * [Salted Password Hasing](https://crackstation.net/hashing-security.htm) - Password Hashing
 * [John French](https://github.com/john-french)
+* [HTTP Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)

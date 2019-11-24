@@ -16,6 +16,10 @@ import java.util.Random;
  * The hashed value has 256 bits.
  * Adapted from <a href="https://stackoverflow.com/questions/18142745/how-do-i-generate-a-salt-in-java-for-salted-hash">
  */
+
+/*
+ * 24/11/2019 : Changed expectedPassword params 
+ */
 public class Passwords {
 
     private static final Random RANDOM = new SecureRandom();

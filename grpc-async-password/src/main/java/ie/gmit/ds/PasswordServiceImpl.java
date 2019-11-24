@@ -41,13 +41,15 @@ public class PasswordServiceImpl extends PasswordServiceGrpc.PasswordServiceImpl
 	public void validate(PasswordValidateRequest request, StreamObserver<BoolValue> responseObserver) {
 		try {
 			char[] password = request.getPassword().toCharArray();
-			byte[] salt = Passwords.getNextSalt();
-			byte[] expectedHash = Passwords.hash(password, salt);
+			byte[] salt = request.getSalt().toByteArray();
+			byte[] expectedHash = request.getHashedPassword().toByteArray();
 	
 			if(Passwords.isExpectedPassword(password, salt, expectedHash))
 				responseObserver.onNext(BoolValue.newBuilder().setValue(true).build());
 			else
-				responseObserver.onNext(BoolValue.newBuilder().setValue(true).build());
+				responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
+			
+			responseObserver.onCompleted();
 			
 		} catch (StatusRuntimeException e) {
 		      logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());

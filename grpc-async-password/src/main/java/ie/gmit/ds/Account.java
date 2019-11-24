@@ -2,6 +2,9 @@ package ie.gmit.ds;
 
 import java.util.Arrays;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ie.gmit.ds.utils.Passwords;
@@ -9,7 +12,11 @@ import ie.gmit.ds.utils.Passwords;
 /*
  * Author: Ethan Horrigan
  * Immutable Account Object
+ * 
+ * Planned on being an immutable object, but XML requires setters.
  */
+
+@XmlRootElement(name= "account")
 public class Account {
 
 	private int userId;
@@ -43,30 +50,73 @@ public class Account {
 		this.email = email;
 		this.password = password;
 	}
+	
+	/*
+	 * Login Account Details
+	 */
+	public Account(int userId, String password) {
+		this.userId = userId;
+		this.password = password;
+	}
 
+	@XmlElement
 	@JsonProperty
 	public int getUserId() {
 		return userId;
 	}
+	@XmlElement
 	@JsonProperty
 	public String getUserName() {
 		return userName;
 	}
+	@XmlElement
 	@JsonProperty
 	public String getEmail() {
 		return email;
 	}
+	@XmlElement
 	@JsonProperty
 	public String getHashedPassword() {
 		return hashedPassword;
 	}
+	@XmlElement
 	@JsonProperty
 	public String getSalt() {
 		return salt;
 	}
+	@XmlElement
 	@JsonProperty
 	public String getPassword() {
 		return password;
+	}
+
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setHashedPassword(String hashedPassword) {
+		this.hashedPassword = hashedPassword;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public void setSaltByte(byte[] saltByte) {
+		this.saltByte = saltByte;
 	}
 
 	@Override

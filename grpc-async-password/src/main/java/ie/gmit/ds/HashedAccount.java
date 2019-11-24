@@ -1,5 +1,18 @@
 package ie.gmit.ds;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/*
+ * Author: Ethan Horrigan
+ * HashedAccount object which will be used to store User's information instead of storing Account.
+ * 
+ * Planned on being an immutable object, but XML requires setters.
+ */
+
+@XmlRootElement(name = "account")
 public class HashedAccount {
 	
 	private int userId;
@@ -21,6 +34,8 @@ public class HashedAccount {
 		this.salt = salt;
 	}
 
+	@JsonProperty
+	@XmlElement
 	public int getUserId() {
 		return userId;
 	}
@@ -29,6 +44,8 @@ public class HashedAccount {
 		this.userId = userId;
 	}
 
+	@JsonProperty
+	@XmlElement
 	public String getUsername() {
 		return username;
 	}
@@ -37,6 +54,8 @@ public class HashedAccount {
 		this.username = username;
 	}
 
+	@JsonProperty
+	@XmlElement
 	public String getEmail() {
 		return email;
 	}
@@ -45,6 +64,8 @@ public class HashedAccount {
 		this.email = email;
 	}
 
+	@JsonProperty
+	@XmlElement
 	public String getHashedPassword() {
 		return hashedPassword;
 	}
@@ -53,6 +74,8 @@ public class HashedAccount {
 		this.hashedPassword = hashedPassword;
 	}
 
+	@JsonProperty
+	@XmlElement
 	public String getSalt() {
 		return salt;
 	}

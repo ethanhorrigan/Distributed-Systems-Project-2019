@@ -1,6 +1,6 @@
 {
 	"userId": "4",
-	"userName": "Ethan",
+	"userName": "ethan",
 	"email": "ethanhorr@gmail.com",
-	"password": "ethan123"
+	"password": "ethan"
 }
